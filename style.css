@@ -1,0 +1,237 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.background{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+}
+
+#background-image{
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+
+.chat{
+    position: absolute;
+    width: 50%;
+    height: 90vh;
+    /* background-color: rgba(179, 110, 120, 0.634); */
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    top: 30px;
+    right: 40px;
+    border-radius: 15px;
+    overflow: hidden;  
+}
+
+.agent-info{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4rem;
+    width: 100%;
+    background-color: aliceblue;
+    padding: 15px;
+}
+
+.agent-info h5{
+    font-size: 1.2rem;
+}
+
+
+#profile-pic{
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    position: relative;
+}
+
+.chat-functions{
+    /* background-color: red; */
+    position: relative;
+    width: 10px;
+    height: 10px;
+}
+
+.chat-functions i{
+    position: absolute;
+    right: 0;
+}
+
+.chat-functions #function-popup{
+    position: relative;
+    transform: translate(-110%, 0);
+    width: fit-content;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    display: none;
+    z-index: 99;
+}
+
+.chat-functions #function-popup.active{
+    display: flex;
+}
+
+a{
+    padding: 8px;
+    text-decoration: none;
+    color: black;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+}
+
+a:hover{
+    background-color: rgba(219, 218, 218, 0.681);
+    color: rgb(98%, 64%, 48%);
+}
+
+.text-field{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    gap: 5px;
+    padding: 15px;
+}
+input{
+    flex: 1;
+    height: 2.5rem;
+    border-radius: 20px;
+    padding: 20px;
+    border: none;
+    outline: none;
+    border: 1px solid transparent;
+    background-color: rgba(255, 255, 255, 0.438);
+}
+
+#submit-btn{
+    width: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    background-color: rgb(18%, 12%, 17%);
+}
+
+input:focus{
+    border: 1px solid rgb(18%, 12%, 17%);
+}
+
+.submit-icon{
+    transform: translate(-5%, 5%);
+    color: rgb(98%, 66%, 50%);
+}
+
+#submit-btn:active{
+    transform: scale(0.99);
+}
+.demo-container{
+    display: flex;
+    height: 81%;
+    overflow-y: auto;
+}
+
+.chat-messages{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    height: fit-content;
+    max-height: 100%;
+    gap: 12px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    align-self: flex-end;  
+}
+
+.user-response{
+    align-self: flex-end;
+    width: 40%;
+    display: flex;
+    align-items: end;
+    gap: 10px;
+}
+
+.agent-response{
+    align-self: flex-start;
+    width: 40%;
+    display: flex;
+    align-items: end;
+    gap: 10px;
+}
+
+.user-response .data{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: end;
+    padding: 8px;
+    border-radius: 12px;
+    height: fit-content;
+    background-color: rgb(93%, 51%, 46%);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.agent-response .data{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: end;
+    padding: 8px;
+    border-radius: 12px;
+    height: fit-content;
+    background-color: rgb(93%, 51%, 46%);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+
+.data i{
+    font-size: 10px;
+}
+
+.pic-container{
+    min-width: 2rem;
+    height: 2rem;
+    background-color: rgba(255, 255, 255, 0.619);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.agent-pic-container{
+    min-width: 2rem;
+    height: 2rem;
+    background-color: rgba(255, 255, 255, 0.619);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
