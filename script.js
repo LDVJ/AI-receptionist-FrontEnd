@@ -7,6 +7,8 @@ const chatMessages = document.querySelector(".chat-messages");
 /* ---------------- Event Listeners ---------------- */
 
 const BASE_URL = "http://127.0.0.1:8000"
+const params = new URLSearchParams(window.location.search)
+const slug = params.get("slug")
 
 functionIcon.addEventListener("click", toggleFunctionPopup);
 
@@ -24,43 +26,43 @@ function toggleFunctionPopup() {
     functionPopup.classList.toggle("active");
 }
 
-function createUserMessage() {
-    const message = messageBox.value.trim();
-
-    if (!message) return;
-
-    const userMessage = document.createElement("div");
-    userMessage.classList.add("user-response");
-
+async function createUserMessage() {
+    const question = messageBox.value.trim();
+    if (!question) return;
+    const userQuestion = document.createElement("div");
+    userQuestion.classList.add("user-response");
     const currentTime = new Date().toLocaleTimeString("en-US", {
         hour: "numeric",
         minute: "2-digit"
     });
-
-    userMessage.innerHTML = `
+    userQuestion.innerHTML = `
         <div class="data">
-            <p class="user-text-send">${message}</p>
+            <p class="user-text-send">${question}</p>
 
             <small class="send-time">
                 <i class="fa-regular fa-clock"></i>
                 ${currentTime}
             </small>
         </div>
-
         <div class="pic-container">
             <i class="fa-solid fa-user"></i>
         </div>
     `;
 
-    chatMessages.append(userMessage);
+    chatMessages.append(userQuestion);
 
     messageBox.value = "";
     messageBox.focus();
 
-    userMessage.scrollIntoView({
+    userQuestion.scrollIntoView({
         behavior: "smooth",
         block: "end"
     });
+
+    loadingAgentStateStart()
+    await ProcessResponse(question)
+    loadingAgentStateEnd()
+
 }
 
 function loadingAgentStateStart(){
@@ -76,6 +78,10 @@ function loadingAgentStateStart(){
             </div>
     `
     chatMessages.append(loadElement)
+    loadElement.scrollIntoView({
+        behavior: "smooth",
+        block: "end"
+    });
 
 }
 
@@ -84,37 +90,35 @@ function loadingAgentStateEnd(){
     loadElement.remove()
 }
 
-function createAgentMEssage(message){
-    loadingAgentStateStart()
-    let newAgentResponse = document.createElement("div")
-    newAgentResponse.classList.add("agent-response")
-    let currentTime = new Date().toLocaleTimeString("en-US", {
-        hour: "numeric",
-        minute: "2-digit"
-    });
-    newAgentResponse.innerHTML = `
-    <div class="agent-pic-container">A</div>
-            <div class="data">
-              <p class="agent-text-send">
-                ${message}
-              </p>
-              <small class="send-time"
-                ><i class="fa-regular fa-clock"></i> ${currentTime}</small
-              >
-            </div>
-    `
-    loadingAgentStateEnd()
-    chatMessages.append(newAgentResponse)
+async function ProcessResponse(question){
+    const response = await fetch(`${BASE_URL}/chat/${slug}`, {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+            question: question
+        })
+    })
+
+    const data = await response.json()
+
+    createAgentResponse(data.answer)
 }
 
-function renderFaqSuggestion(demo){
-    console.log("renderFaqSuggestion ==",demo)
-}
+// function renderFaqSuggestion(demo){
+//     console.log("renderFaqSuggestion ==",demo)
+// }
 
 
 async function loadHotelGreeting(){
     try{
-        const response = await fetch(`${BASE_URL}/chat/${slug}`)
+        const response = await fetch(`${BASE_URL}/chat/${slug}`, {
+            method: "GET",
+        })
         
         if(!response.ok){
             console.error("Failed to load Hotel: ",response.status)
@@ -123,10 +127,8 @@ async function loadHotelGreeting(){
         }
         
         const data = await response.json()
-
-        createAgentMEssage(data.welcome_msg);
-        
-        renderFaqSuggestion(data.faqs)
+        console.log(data)
+        createAgentResponse(data.welcome_msg)
 
 
     }catch(error){
@@ -136,7 +138,33 @@ async function loadHotelGreeting(){
 }
 
 
-const params = new URLSearchParams(window.location.search)
-const slug = params.get("slug")
+function createAgentResponse(response){
+
+    const currentTime = new Date().toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "2-digit"
+    });
+    let newAgentResponse = document.createElement("div")
+    newAgentResponse.classList.add("agent-response")
+
+    newAgentResponse.innerHTML = `
+    <div class="agent-pic-container">A</div>
+            <div class="data">
+              <p class="agent-text-send">
+                ${response}
+              </p>
+              <small class="send-time"
+                ><i class="fa-regular fa-clock"></i> ${currentTime}</small
+              >
+            </div>
+    `
+    chatMessages.append(newAgentResponse)
+
+    newAgentResponse.scrollIntoView({
+        behavior: "smooth",
+        block: "end"
+    });
+}
+
 
 loadHotelGreeting()
