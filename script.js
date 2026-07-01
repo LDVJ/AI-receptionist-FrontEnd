@@ -6,7 +6,8 @@ const chatMessages = document.querySelector(".chat-messages");
 
 /* ---------------- Event Listeners ---------------- */
 
-const BASE_URL = "http://127.0.0.1:8000"
+// const BASE_URL = "http://127.0.0.1:8000"
+const BASE_URL = "https://ai-receptionist-6we2.onrender.com/"
 const params = new URLSearchParams(window.location.search)
 const slug = params.get("slug")
 
@@ -86,8 +87,10 @@ function loadingAgentStateStart(){
 }
 
 function loadingAgentStateEnd(){
-    let loadElement = document.querySelector(".load")
-    loadElement.remove()
+    let loadElement = document.querySelectorAll(".load")
+    loadElement.forEach(removeElemeent => {
+        removeElemeent.remove()
+    })
 }
 
 async function ProcessResponse(question){
