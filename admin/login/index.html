@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login</title>
+    <link rel="shortcut icon" href="logo.png" type="image/png" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <main>
+      <section id="left-section">
+        <div class="top-content">
+          <img src="logo.png" alt="Logo" id="logo-img" />
+          <h1>
+            Welcome <br />
+            Back!
+          </h1>
+          <br />
+          <p>Access Your Admin Dashboard</p>
+          <p>and manage your Hotel effortlessly.</p>
+        </div>
+        <div class="background">
+          <img src="login_background.png" alt="Hotel_background" />
+        </div>
+      </section>
+      <section id="right-section">
+        <div class="form-card">
+          <div class="div lock-icon"><i class="fa-regular fa-user" id="admin-icon"></i></div>
+          <h1>Admin Login</h1>
+          <p>Sign in to access</p>
+          <form>
+            <div class="main-form">
+              <label for="email">Email Address</label>
+              <div class="email-input">
+                <input type="email" placeholder="admin@royalheaven.com" />
+                <i class="fa-solid fa-envelope" id="email-icon"></i>
+            </div>
+            <small id="email-error">h</small>
+
+              <label for="password">Password</label>
+              <div class="password-input">
+                <input type="password" name="password" id="password" placeholder="Test@123"/>
+                <i class="fa-solid fa-lock" id="password-icon"></i>
+              </div>
+              <small id="password-error">g</small>
+            </div>
+
+            <div class="extra-options">
+                <div class="remember-option">
+                    <input type="checkbox" name="remember" id="remember" />
+                    <label for="remember">Remember me</label>
+                </div>
+                
+                <a href="#">Forgot Password</a>
+            </div>
+
+            <button type="submit">
+              <i class="fa-regular fa-paper-plane"></i> Submit
+            </button>
+          </form>
+
+          <p>Don't have a Account. <a href="#">Sign up</a></p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

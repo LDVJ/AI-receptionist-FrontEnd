@@ -6,8 +6,8 @@ const chatMessages = document.querySelector(".chat-messages");
 
 /* ---------------- Event Listeners ---------------- */
 
-// const BASE_URL = "http://127.0.0.1:8000"
-const BASE_URL = "https://ai-receptionist-6we2.onrender.com/"
+const BASE_URL = "http://127.0.0.1:8000"
+// const BASE_URL = "https://ai-receptionist-6we2.onrender.com/"
 const params = new URLSearchParams(window.location.search)
 const slug = params.get("slug")
 
@@ -130,7 +130,6 @@ async function loadHotelGreeting(){
         }
         
         const data = await response.json()
-        console.log(data)
         createAgentResponse(data.welcome_msg)
 
 
