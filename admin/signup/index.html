@@ -38,6 +38,15 @@
           <p>Sign in to access</p>
           <form>
             <div class="main-form">
+              <label for="name">Full Name</label>
+              <div class="name-input">
+                <input type="text" name="name" id="name" placeholder="John Doe"/>
+                <i class="fa-solid fa-lock" id="password-icon"></i>
+                <i class="fa-solid fa-user" id="name-icon"></i>
+              </div>
+              <small id="name-error">g</small>
+            </div>
+
               <label for="email">Email Address</label>
               <div class="email-input">
                 <input type="email" placeholder="admin@royalheaven.com" />
@@ -49,9 +58,11 @@
               <div class="password-input">
                 <input type="password" name="password" id="password" placeholder="Test@123"/>
                 <i class="fa-solid fa-lock" id="password-icon"></i>
+                <i class="fa-solid fa-eye "></i>
               </div>
               <small id="password-error">g</small>
             </div>
+            
 
             <div class="extra-options">
                 <div class="remember-option">
